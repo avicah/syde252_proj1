@@ -2,7 +2,6 @@ function [numBeats] = birds_silence(resampled_data,file_name)
 
 filtered_data = median_filter(weighted_avg_filter(abs(resampled_data),1000) , 200);
 
-clf;
 sampleNum = 1:size(filtered_data) ;
 
 threshold_checked = sign(filtered_data - 0.01.*ones(size(filtered_data,1),1) );
@@ -14,7 +13,7 @@ hold on;
 plot(sampleNum,filtered_data);
 xlabel('Sample Number');
 ylabel('Waveform');
-title('filtered waveform');
+title('Birds Audio Filtered Waveform');
 
 
 

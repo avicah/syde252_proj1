@@ -2,7 +2,6 @@ function [calced_bpm] = bpm(resampled_data,file_name)
 
 dataForPeakDetector = median_filter(weighted_avg_filter(abs(resampled_data),5000) , 2000);
 
-clf;
 sampleNum = 1:size(dataForPeakDetector) ;
 
 plot(sampleNum,dataForPeakDetector);
@@ -16,9 +15,7 @@ hold on;
 
 text(locs+.02,pks,num2str((1:numel(pks))'));
 
-fprintf("the number of beats in the file "+file_name+" is %d\n",numBeats);
-
-audio_length = (size(resampled_data,1) / 16e3) / 60
+audio_length = (size(resampled_data,1) / 16e3) / 60;
 
 calced_bpm = numBeats / audio_length;
 
