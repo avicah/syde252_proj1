@@ -38,6 +38,7 @@ medianFilteredSpeech = median_filter(speech_audio_resampled,50000);
 
 clf;
 
-syllable_count(speech_audio_resampled)
-bpm(drums_audio_resampled)
-birds_silence(birds_audio_resampled)
+syllable_count(speech_audio_resampled,"Speech.wav");
+birds_silence(birds_audio_resampled,"Birds.wav");
+bpm(drums_audio_resampled,"Drum.wav");
+

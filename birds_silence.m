@@ -1,4 +1,4 @@
-function [numBeats] = birds_silence(resampled_data)
+function [numBeats] = birds_silence(resampled_data,file_name)
 
 filtered_data = median_filter(weighted_avg_filter(abs(resampled_data),1000) , 200);
 
