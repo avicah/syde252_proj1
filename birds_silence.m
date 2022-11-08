@@ -1,28 +1,24 @@
 function [numBeats] = birds_silence(resampled_data)
 
-dataForPeakDetector = median_filter(weighted_avg_filter(abs(resampled_data),1000) , 200);
+filtered_data = median_filter(weighted_avg_filter(abs(resampled_data),1000) , 200);
 
 clf;
-sampleNum = 1:size(dataForPeakDetector) ;
+sampleNum = 1:size(filtered_data) ;
 
+threshold_checked = sign(filtered_data - 0.01.*ones(size(filtered_data,1),1) );
 
+silent_regions = (threshold_checked <= 0).*0.01;
 
-plot(sampleNum,dataForPeakDetector);
+hold on;
+
+plot(sampleNum,filtered_data);
 xlabel('Sample Number');
 ylabel('Waveform');
 title('filtered waveform');
 
-[numBeats pks,locs] = peak_detector(dataForPeakDetector);
 
-hold on;
 
-x = 1:size(dataForPeakDetector);
-
-output_silence = signs(dataForPeakDetector);
-
-%under_data = dataForPeakDetector(underThreshold);
-
-plot(x,output_silence);
+plot(sampleNum,silent_regions);
 %plot(over_x,0);
 
 

@@ -1,19 +1,43 @@
-resampled_data = read_in_audio("Birds.wav");
+birds_audio_resampled = read_in_audio("Birds.wav");
+drums_audio_resampled = read_in_audio("Drum.wav");
+speech_audio_resampled = read_in_audio("Speech.wav");
 
-movAvgFilteredData = mov_avg_filter(resampled_data,10);
 
-sound(movAvgFilteredData,16e3);
+% birds
+movAvgFilteredBirds = mov_avg_filter(birds_audio_resampled,10);
+%sound(movAvgFilteredBirds,16e3);
 
-weightedAvgFilteredData = weighted_avg_filter(resampled_data,5000);
+weightedAvgFilteredBirds = weighted_avg_filter(birds_audio_resampled,5000);
+%sound(weightedAvgFilteredBirds,16e3);
 
-%sound(weightedAvgFilteredData,16e3);
+medianFilteredBirds = median_filter(birds_audio_resampled,50000);
+%sound(medianFilteredBirds,16e3);
 
-medianFilteredData = median_filter(resampled_data,50000);
 
-%sound(medianFilteredData,16e3);
+% drums
+movAvgFilteredDrums = mov_avg_filter(drums_audio_resampled,10);
+%sound(movAvgFilteredDrums,16e3);
+
+weightedAvgFilteredDrums = weighted_avg_filter(drums_audio_resampled,5000);
+%sound(weightedAvgFilteredDrums,16e3);
+
+medianFilteredDrums = median_filter(drums_audio_resampled,50000);
+%sound(medianFilteredDrums,16e3);
+
+
+% speech
+movAvgFilteredSpeech = mov_avg_filter(speech_audio_resampled,10);
+%sound(movAvgFilteredSpeech,16e3);
+
+weightedAvgFilteredSpeech = weighted_avg_filter(speech_audio_resampled,5000);
+%sound(weightedAvgFilteredSpeech,16e3);
+
+medianFilteredSpeech = median_filter(speech_audio_resampled,50000);
+%sound(medianFilteredSpeech,16e3);
+
 
 clf;
 
-
-
-birds_silence(resampled_data)
+syllable_count(speech_audio_resampled)
+bpm(drums_audio_resampled)
+birds_silence(birds_audio_resampled)
