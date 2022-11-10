@@ -2,7 +2,6 @@ birds_audio_resampled = read_in_audio("Birds.wav");
 drums_audio_resampled = read_in_audio("Drum.wav");
 speech_audio_resampled = read_in_audio("Speech.wav");
 
-
 % birds
 movAvgFilteredBirds = mov_avg_filter(birds_audio_resampled,10);
 %sound(movAvgFilteredBirds,16e3);
@@ -44,7 +43,4 @@ bpm(drums_audio_resampled,"Drum.wav");
 subplot(3,1,2);
 syllable_count(speech_audio_resampled,"Speech.wav");
 subplot(3,1,3);
-birds_silence(birds_audio_resampled,"Birds.wav");
-
-
-
+birds_silence(birds_audio_resampled);
