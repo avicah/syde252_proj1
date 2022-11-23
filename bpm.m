@@ -1,14 +1,18 @@
 function [calced_bpm] = bpm(resampled_data,file_name)
 
+%takes the absolute value of the resampled data, then applies a weighted
+%average and median filter to smooth the signal
 dataForPeakDetector = median_filter(weighted_avg_filter(abs(resampled_data),5000) , 2000);
 
-sampleNum = 1:size(dataForPeakDetector) ;
+sampleNum = 1:size(dataForPeakDetector);
 
-plot(sampleNum,dataForPeakDetector);
+%plots the filtered data to visualize the waveform
+plot(sampleNum,dataForPeakDetector, 'm');
 xlabel('Sample Number');
 ylabel('Waveform');
 title('Drum Audio Filtered Waveform');
 
+%performs basic peak analysis on filtered data
 [numBeats, pks,locs] = peak_detector(dataForPeakDetector);
 
 hold on;
